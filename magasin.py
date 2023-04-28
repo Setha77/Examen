@@ -3,7 +3,10 @@ class Magasin:
         self.typeMusique = typeMusique
         self.listeVinyle = []
         self.listeDVD = []
-
+    # Méthode pour connaître les informations
+    def get_typeMusique(self):
+        return self.typeMusique
+    
     # Méthode pour ajouter une musique dans la liste des vinyles
     def ajouter_musique_vinyle(self, musique):
         self.listeVinyle.append(musique)
