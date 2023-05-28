@@ -40,5 +40,18 @@ class ModelMusique(BaseModel):
         if resultat != 1 and style not in list_styles:
             raise ValueError("L'immatriculation ne possède le style que vous avez mis ou erreur ce que vous aves mis n'est pas une chaîne de caractère")
         return value
-        
+    
+    @validator('immatriculation')
+    def verifier_six(cls, value):
+        """Verifier que l'immatriculation ne possède pas de six dans les 4 derniers"""
+        premier = value[11]
+        deuxieme = value[12]
+        troisieme = value[13]
+        quatrieme = value[14]
+
+        if premier == 6 or deuxieme == 6 or troisieme == 6 or quatrieme == 6:
+            raise ValueError("L'immatriculation possède des 6")
+        return value
+    
+
         
