@@ -12,5 +12,13 @@ class ModelMusique(BaseModel):
             raise ValueError("La taille n'est pas égal à 15")
         return value
     
+    @validator('immatriculation')
+    def verifier_string(cls, value):
+         """Verifier que l'immatriculation soit une chaîne de caractère"""
+         resultat = isinstance(value, str)
+         if resultat != 1:
+             raise ValueError("L'immatriculation n'est pas une chaîne de caractère")
+         return value
+    
     
 
