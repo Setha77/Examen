@@ -1,4 +1,4 @@
-from pydantic import BaseModel, validator
+from pydantic import BaseModel, validator, root_validator
 
 class ModelMusique(BaseModel):
     titre: str
@@ -53,5 +53,15 @@ class ModelMusique(BaseModel):
             raise ValueError("L'immatriculation possède des 6")
         return value
     
+    @root_validator
+    def verifier_initial(cls, value):
+        """Verifier que l'immatriculation possède l'initial de l'artiste"""
+        initial_temp = value.get("immatriculation")
+        initial = initial_temp[0:2]
+        initial_temp2 = value.get("nom_artiste")
+        initial_artiste = initial_temp2[0:2]
 
+        if initial != initial_artiste:
+            raise ValueError("L'initial n'est pas bon")
+        return value
         
