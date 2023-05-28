@@ -30,5 +30,15 @@ class ModelMusique(BaseModel):
         if (slash1 != "/") and (slash2 != "/") and (slash3 != "/"):
             raise ValueError("L'immatriculation ne possède pas les slashs")
         return value
-
-
+    
+    @validator('immatriculation')
+    def verifier_style(cls, value):
+        """Verifier que l'immatriculation possède ses 3 styles de musiques listés"""
+        list_styles = ["POP", "RAP", "RNB"]
+        style = value[7:10]
+        resultat = isinstance(style, str)
+        if resultat != 1 and style not in list_styles:
+            raise ValueError("L'immatriculation ne possède le style que vous avez mis ou erreur ce que vous aves mis n'est pas une chaîne de caractère")
+        return value
+        
+        
