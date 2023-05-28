@@ -65,3 +65,11 @@ class ModelMusique(BaseModel):
             raise ValueError("L'initial n'est pas bon")
         return value
         
+    @validator('immatriculation')
+    def verifier_duree(cls, value):
+        """Verifier que l'immatriculation ne possède pas une durée < 60s ou 300s > durée"""
+        duree = value[3:6]
+        convertir = int(duree)
+
+        if duree < 60 or duree > 300:
+            raise ValueError("L'immatriculation possède une durée incorrecte")
