@@ -4,4 +4,5 @@ class Musique:
         self.artiste = artiste
         self.immatriculation = immatriculation
 
-        
+    
+    
