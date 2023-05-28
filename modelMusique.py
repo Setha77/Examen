@@ -73,3 +73,4 @@ class ModelMusique(BaseModel):
 
         if duree < 60 or duree > 300:
             raise ValueError("L'immatriculation possède une durée incorrecte")
+        return value
