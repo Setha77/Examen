@@ -15,9 +15,17 @@ class ModelMagasin(BaseModel):
     def get_DVD(self):
         return self.liste_DVD
     
+    # Verifier le type de musique ajouté
+    def verifier_typeMusique(self, musique: ModelMusique):
+        styleMusique = musique.immatriculation[7:10]
+        if styleMusique != self.typeMusique:
+            raise ValueError("Le style musique ne correspond pas au type de musique du magasin")
+        
     # Ajouter des musiques dans la liste Vinyle
     def ajouter_Vinyle(self, musique: ModelMusique):
-        self.liste_Vinyle.append(musique)
+        compatible = self.verifier_typeMusique(musique)
+        if compatible == 1:
+            self.liste_Vinyle.append(musique)
 
     # Ajouter des musiques dans la liste DVD
     def ajouter_DVD(self, musique: ModelMusique):
@@ -32,3 +40,4 @@ class ModelMagasin(BaseModel):
     def retirer_DVD(self, musique: ModelMusique):
         if musique in self.liste_DVD:
             self.liste_DVD.remove(musique)
+
