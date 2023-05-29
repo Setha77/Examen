@@ -2,6 +2,9 @@ from pydantic import BaseModel, validator
 from typing import List
 from modelMusique import ModelMusique
 
+class ModelMagasinException(Exception):
+    pass
+
 class ModelMagasin(BaseModel):
     typeMusique: str
     liste_Vinyle: List[ModelMusique]
@@ -37,11 +40,16 @@ class ModelMagasin(BaseModel):
     
     # Enlever des musiques dans la liste Vinyle
     def retirer_Vinyle(self, musique: ModelMusique):
-        if musique in self.liste_Vinyle:
+        try:
             self.liste_Vinyle.remove(musique)
+        except ValueError:
+            raise ModelMagasinException(f"{musique} was not found.")
 
     # Enlever des musiques dans la liste Vinyle
     def retirer_DVD(self, musique: ModelMusique):
-        if musique in self.liste_DVD:
+        try:
             self.liste_DVD.remove(musique)
+        except ValueError:
+            raise ModelMagasinException(f"{musique} was not found.")
+
 
