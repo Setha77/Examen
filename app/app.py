@@ -3,3 +3,4 @@ from modelMagasin import ModelMagasin, ModelMagasinException
 from modelMusique import ModelMusique
 from db import *
 
+app = FastAPI()
