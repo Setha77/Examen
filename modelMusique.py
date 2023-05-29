@@ -71,6 +71,6 @@ class ModelMusique(BaseModel):
         duree = value[3:6]
         convertir = int(duree)
 
-        if duree < 60 or duree > 300:
+        if convertir < 60 or convertir > 300:
             raise ValueError("L'immatriculation possède une durée incorrecte")
         return value
