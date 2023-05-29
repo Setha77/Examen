@@ -1,3 +1,4 @@
+import unittest
 from mock import Mock
 from modelMagasin import ModelMagasin, ModelMagasinException
 
@@ -62,3 +63,6 @@ def test_remove_musiqueDVDFailure():
         pass
     else:
         raise Exception("expected Exception was not raised")
+    
+if __name__ == '__main__':
+    unittest.main()
