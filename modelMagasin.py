@@ -28,15 +28,17 @@ class ModelMagasin(BaseModel):
         
     # Ajouter des musiques dans la liste Vinyle
     def ajouter_Vinyle(self, musique: ModelMusique):
+        """
         compatible = self.verifier_typeMusique(musique)
         if compatible == 1:
-            self.liste_Vinyle.append(musique)
+        """
+        self.liste_Vinyle.append(musique)
 
     # Ajouter des musiques dans la liste DVD
     def ajouter_DVD(self, musique: ModelMusique):
-        compatible = self.verifier_typeMusique(musique)
-        if compatible == 1:
-            self.liste_DVD.append(musique)
+        #compatible = self.verifier_typeMusique(musique)
+        #if compatible == 1:
+        self.liste_DVD.append(musique)
     
     # Enlever des musiques dans la liste Vinyle
     def retirer_Vinyle(self, musique: ModelMusique):
