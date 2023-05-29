@@ -27,7 +27,7 @@ class ModelMusique(BaseModel):
         slash2 = value[6]
         slash3 = value[10]
 
-        if (slash1 != "/") and (slash2 != "/") and (slash3 != "/"):
+        if (slash1 != "/") or (slash2 != "/") or (slash3 != "/"):
             raise ValueError("L'immatriculation ne possède pas les slashs")
         return value
     
@@ -36,8 +36,8 @@ class ModelMusique(BaseModel):
         """Verifier que l'immatriculation possède ses 3 styles de musiques listés"""
         list_styles = ["POP", "RAP", "RNB"]
         style = value[7:10]
-        resultat = isinstance(style, str)
-        if resultat != 1 and style not in list_styles:
+        
+        if style not in list_styles:
             raise ValueError("L'immatriculation ne possède le style que vous avez mis ou erreur ce que vous aves mis n'est pas une chaîne de caractère")
         return value
     
@@ -75,12 +75,13 @@ class ModelMusique(BaseModel):
             raise ValueError("L'immatriculation possède une durée incorrecte")
         return value
 
+"""
 try:    
     exemple = ModelMusique (
         titre = "My Heart Will Go On",
         nom_artiste = "DION",
-        immatriculation = "DI/250/PIP/1236",
+        immatriculation = "DI/250/POP/1234",
     )
 except ValidationError as e:
     print(e)
-
+"""
