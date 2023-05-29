@@ -1,4 +1,4 @@
-from pydantic import BaseModel, validator, root_validator
+from pydantic import BaseModel, validator, root_validator, ValidationError
 
 class ModelMusique(BaseModel):
     titre: str
@@ -49,7 +49,7 @@ class ModelMusique(BaseModel):
         troisieme = value[13]
         quatrieme = value[14]
 
-        if premier == 6 or deuxieme == 6 or troisieme == 6 or quatrieme == 6:
+        if premier == '6' or deuxieme == '6' or troisieme == '6' or quatrieme == '6':
             raise ValueError("L'immatriculation possède des 6")
         return value
     
@@ -74,3 +74,13 @@ class ModelMusique(BaseModel):
         if convertir < 60 or convertir > 300:
             raise ValueError("L'immatriculation possède une durée incorrecte")
         return value
+
+try:    
+    exemple = ModelMusique (
+        titre = "My Heart Will Go On",
+        nom_artiste = "DION",
+        immatriculation = "DI/250/PIP/1236",
+    )
+except ValidationError as e:
+    print(e)
+
