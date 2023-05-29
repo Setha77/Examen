@@ -19,7 +19,9 @@ class ModelMagasin(BaseModel):
     def verifier_typeMusique(self, musique: ModelMusique):
         styleMusique = musique.immatriculation[7:10]
         if styleMusique != self.typeMusique:
-            raise ValueError("Le style musique ne correspond pas au type de musique du magasin")
+            return False
+        else:
+            return True
         
     # Ajouter des musiques dans la liste Vinyle
     def ajouter_Vinyle(self, musique: ModelMusique):
