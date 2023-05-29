@@ -1,6 +1,5 @@
 from mock import Mock
-from modelMagasin import ModelMagasin
-from modelMusique import ModelMusique
+from modelMagasin import ModelMagasin, ModelMagasinException
 
 # Test si ajouter musique dans Vinyle fonctionne
 def test_add_musiqueVinyle():
@@ -36,3 +35,30 @@ def test_remove_musiqueDVD():
 
     assert modelMag.liste_DVD == []
 
+# Test si retirer une musique inexistante dans Vinyle 
+def test_remove_musiqueVinyleFailure():
+    musique = Mock()
+    other_musique = Mock()
+    modelMag = ModelMagasin()
+    modelMag.liste_Vinyle = [musique]
+
+    try:
+        modelMag.retirer_Vinyle(other_musique)
+    except ModelMagasinException:
+        pass
+    else:
+        raise Exception("expected Exception was not raised")
+    
+# Test si retirer une musique inexistante dans DVD
+def test_remove_musiqueDVDFailure():
+    musique = Mock()
+    other_musique = Mock()
+    modelMag = ModelMagasin()
+    modelMag.liste_Vinyle = [musique]
+
+    try:
+        modelMag.retirer_DVD(other_musique)
+    except ModelMagasinException:
+        pass
+    else:
+        raise Exception("expected Exception was not raised")
